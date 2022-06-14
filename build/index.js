@@ -1,3 +1,7 @@
+function randomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
 window.onload = () => {
     let testEntitiesAdded = false;
     //alert('If testing the lat/lon manual input on a mobile device, please turn off your GPS to avoid the real location being detected.');
@@ -48,7 +52,54 @@ window.onload = () => {
                 
                 document.querySelector("a-scene").appendChild(entity);
             }
+
             testEntitiesAdded = true;
+
+            if(testEntitiesAdded) {
+
+                const entity = document.createElement("a-entity");
+
+                entity.setAttribute("scale", {
+                    x: 20, 
+                    y: 20,
+                    z: 20
+                });
+                entity.setAttribute("rotation", {
+                    x: 0, 
+                    y: 0,
+                    z: 0
+                });
+                //entity.setAttribute('material', { color: 'pink' } );
+                entity.setAttribute('gltf-model', './models/platoComida.glb');
+                entity.setAttribute('gps-new-entity-place', {
+                    latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
+                    longitude: e.detail.position.longitude - randomNumber(0.001, -0.001)
+                });
+                entity.setAttribute('animation-mixer', '');
+                document.querySelector("a-scene").appendChild(entity);
+
+                const entity2 = document.createElement("a-entity");
+                entity.setAttribute("scale", {
+                    x: 20, 
+                    y: 20,
+                    z: 20
+                });
+                entity.setAttribute("rotation", {
+                    x: 0, 
+                    y: 0,
+                    z: 0
+                });
+                //entity.setAttribute('material', { color: 'pink' } );
+                entity2.setAttribute('gltf-model', './models/magnemite.glb');
+                entity2.setAttribute('gps-new-entity-place', {
+                    latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
+                    longitude: e.detail.position.longitude - randomNumber(0.001, -0.001)
+                });
+                entity2.setAttribute('animation-mixer', '');
+                document.querySelector("a-scene").appendChild(entity2);
+
+            }
+
         }
     });
 
