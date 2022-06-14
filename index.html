@@ -1,48 +1,34 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>GeoAR.js demo</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-  </head>
-
-  <body style="margin: 0; overflow: hidden;">
-
-    <a-scene
-      vr-mode-ui="enabled: false"
-      embedded
-      arjs="sourceType: webcam; debugUIEnabled: false;">
-
-      <!-- <a-box position="0 1.5 -5" rotation="0 180 0" width="1" height="1" depth="1" color="#4CC3D9"></a-box> -->
-      
-
-      <!-- <a-text 
-        value="Hi, Jorge" 
-        look-at="[gps-camera]" 
-        scale="120 120 120" 
-        position="0 0.75 -3"
-        gps-entity-place="latitude: 8.7405111; longitude: -75.86865321;">
-      </a-text> -->
-
-      <!-- <a-text value="Hi, George zero!" color="white" scale="1 1 1" look-at="[gps-camera]" gps-entity-place="latitude: 8.7405111; longitude: -75.86865321;"></a-text> -->
-
-      <a-text value="Hi, George One!" color="red" scale="1 1 1" position="0 1.5 -5" look-at="[gps-camera]" gps-entity-place="latitude: 8.7335706; longitude: -75.8650035;"></a-text>
-
-      <a-text value="Hola, Jorge Two!" color="blue" scale="1 1 1" position="0 1.5 -5" look-at="[gps-camera]" gps-entity-place="latitude: 8.740512; longitude: -75.8686532;"></a-text>
-
-      <!-- <a-text value="Hi, George three.js!" color="green" position="0 1.5 -5" scale="1 1 1" look-at="[gps-camera]" gps-entity-place="latitude: 8.7405141; longitude: -75.86865351;"></a-text> -->
-
-      <a-camera gps-camera rotation-reader>
-
-        <!-- <a-text value="Hi, Jorge!" look-at="[gps-camera]" color="blue" position="0 0 -5" scale="1 1 1" align="center"></a-text> -->
-
-      </a-camera>
-
-
-    </a-scene>
-
-  </body>
-</html>
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <title>Location Based AR.js demo</title>
+      <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+      <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+      <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+      <script>
+        window.onload = () => {                       
+          navigator.geolocation.getCurrentPosition((position) => {
+          //console.log(position.coords.latitude)
+          //console.log(position.coords.longitude)
+          document.querySelector('a-text').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
+        });
+       }
+      </script>
+    </head>
+  
+    <body style="margin: 0; overflow: hidden;">
+      <a-scene
+        vr-mode-ui="enabled: false"
+        embedded
+        arjs="sourceType: webcam; debugUIEnabled: false;"
+      >
+        <a-text
+          value="No markers around"
+          look-at="[gps-camera]"
+          scale="5 5 5"
+        ></a-text>
+        <a-camera gps-camera rotation-reader> </a-camera>
+      </a-scene>
+    </body>
+  </html>
