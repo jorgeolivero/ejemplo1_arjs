@@ -35,6 +35,11 @@ window.onload = () => {
                     y: 20,
                     z: 20
                 });
+                entity.setAttribute("rotation", {
+                    x: 0, 
+                    y: 45,
+                    z: 00
+                });
                 entity.setAttribute('material', { color: prop.color } );
                 entity.setAttribute('gps-new-entity-place', {
                     latitude: e.detail.position.latitude + prop.latDis,
