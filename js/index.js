@@ -32,10 +32,38 @@ window.onload = () => {
 function staticLoadPlaces() {
     return [
         {
-            name: "Your place name",
+            name: "place one",
             location: {
                 lat: 8.742690, // change here latitude if using static data
                 lng: -75.884407, // change here longitude if using static data
+            }
+        },
+        {
+            name: "place two",
+            location: {
+                lat: 8.7405111,
+                lng: -75.86865321,
+            }
+        },
+        {
+            name: "place three",
+            location: {
+                lat: 8.7405111,
+                lng: -75.86865321,
+            }
+        },
+        {
+            name: "place four",
+            location: {
+                lat: 8.7405111,
+                lng: -75.86865321,
+            }
+        },
+        {
+            name: "place five",
+            location: {
+                lat: 8.7405111,
+                lng: -75.86865321,
             }
         },
     ];
@@ -78,6 +106,7 @@ function renderPlaces(places) {
     let scene = document.querySelector('a-scene');
 
     places.forEach((place) => {
+        //console.log('place -->', place)
         let latitude = place.location.lat;
         let longitude = place.location.lng;
 
@@ -86,7 +115,7 @@ function renderPlaces(places) {
         text.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
         text.setAttribute('title', place.name);
         text.setAttribute('href', 'http://www.example.com/');
-        text.setAttribute('scale', '15 15 15');
+        text.setAttribute('scale', '20 20 20');
 
         text.addEventListener('loaded', () => {
             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded', { detail: { component: this.el }}))
