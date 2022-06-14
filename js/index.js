@@ -34,8 +34,8 @@ function staticLoadPlaces() {
         {
             name: "place one",
             location: {
-                lat: 8.742690, // change here latitude if using static data
-                lng: -75.884407, // change here longitude if using static data
+                lat: 8.7405111, // change here latitude if using static data
+                lng: -75.86865321, // change here longitude if using static data
             }
         },
         {
