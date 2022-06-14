@@ -28,6 +28,8 @@ window.onload = () => {
                 }
             ];
             for(const prop of properties) {
+                // console.log('lat -->',  e.detail.position.latitude + prop.latDis)
+                // console.log('lon -->', e.detail.position.longitude + prop.lonDis)
                 const entity = document.createElement("a-box");
                 entity.setAttribute("scale", {
                     x: 20, 
