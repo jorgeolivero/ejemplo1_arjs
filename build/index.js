@@ -33,7 +33,8 @@ window.onload = () => {
             for(const prop of properties) {
                 // console.log('lat -->',  e.detail.position.latitude + prop.latDis)
                 // console.log('lon -->', e.detail.position.longitude + prop.lonDis)
-                const entity = document.createElement("a-box");
+                //const entity = document.createElement("a-box");
+                const entity = document.createElement("a-entity");
                 entity.setAttribute("scale", {
                     x: 20, 
                     y: 20,
@@ -42,9 +43,10 @@ window.onload = () => {
                 entity.setAttribute("rotation", {
                     x: 0, 
                     y: 45,
-                    z: 00
+                    z: 0
                 });
-                entity.setAttribute('material', { color: prop.color } );
+                //entity.setAttribute('material', { color: prop.color } );
+                entity.setAttribute('gltf-model', './models/platoComida.glb');
                 entity.setAttribute('gps-new-entity-place', {
                     latitude: e.detail.position.latitude + prop.latDis,
                     longitude: e.detail.position.longitude + prop.lonDis
@@ -55,50 +57,49 @@ window.onload = () => {
 
             testEntitiesAdded = true;
 
-            if(testEntitiesAdded) {
+            // if(testEntitiesAdded) {
 
-                const entity = document.createElement("a-entity");
+            //     const entity = document.createElement("a-entity");
 
-                entity.setAttribute("scale", {
-                    x: 20, 
-                    y: 20,
-                    z: 20
-                });
-                entity.setAttribute("rotation", {
-                    x: 0, 
-                    y: 0,
-                    z: 0
-                });
-                //entity.setAttribute('material', { color: 'pink' } );
-                entity.setAttribute('gltf-model', './models/platoComida.glb');
-                entity.setAttribute('gps-new-entity-place', {
-                    latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
-                    longitude: e.detail.position.longitude - randomNumber(0.001, -0.001)
-                });
-                entity.setAttribute('animation-mixer', '');
-                document.querySelector("a-scene").appendChild(entity);
+            //     entity.setAttribute("scale", {
+            //         x: 20, 
+            //         y: 20,
+            //         z: 20
+            //     });
+            //     entity.setAttribute("rotation", {
+            //         x: 0, 
+            //         y: 0,
+            //         z: 0
+            //     });
+            //     entity.setAttribute('gltf-model', './models/platoComida.glb');
+            //     entity.setAttribute('gps-new-entity-place', {
+            //         latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
+            //         longitude: e.detail.position.longitude - randomNumber(-0.001, 0.001)
+            //     });
+            //     entity.setAttribute('animation-mixer', '');
+            //     document.querySelector("a-scene").appendChild(entity);
 
-                const entity2 = document.createElement("a-entity");
-                entity.setAttribute("scale", {
-                    x: 20, 
-                    y: 20,
-                    z: 20
-                });
-                entity.setAttribute("rotation", {
-                    x: 0, 
-                    y: 0,
-                    z: 0
-                });
-                //entity.setAttribute('material', { color: 'pink' } );
-                entity2.setAttribute('gltf-model', './models/magnemite.glb');
-                entity2.setAttribute('gps-new-entity-place', {
-                    latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
-                    longitude: e.detail.position.longitude - randomNumber(0.001, -0.001)
-                });
-                entity2.setAttribute('animation-mixer', '');
-                document.querySelector("a-scene").appendChild(entity2);
+            //     const entity2 = document.createElement("a-entity");
+            //     entity2.setAttribute("scale", {
+            //         x: 20, 
+            //         y: 20,
+            //         z: 20
+            //     });
+            //     entity2.setAttribute("rotation", {
+            //         x: 0, 
+            //         y: 180,
+            //         z: 0
+            //     });
+            //     entity2.setAttribute('gltf-model', './models/magnemite.glb');
+            //     entity2.setAttribute('gps-new-entity-place', {
+            //         latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
+            //         longitude: e.detail.position.longitude - randomNumber(-0.001, 0.001)
+            //     });
+            //     entity2.setAttribute('animation-mixer', '');
 
-            }
+            //     document.querySelector("a-scene").appendChild(entity2);
+
+            // }
 
         }
     });
