@@ -3,6 +3,31 @@ function randomNumber(min, max) {
 }
 
 window.onload = () => {
+
+    let sendData
+
+    axios.get('http://localhost:80/api/gaming/prizes/ar', {
+
+                headers: {
+                  cli: 'Web',
+                  uid: '36',
+                  companyId: '946',
+                  dataListPrizesArAround: 'true',
+                  longitude: '0',
+                  latitude: '0',
+                  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjM2LCJuYW1lIjoiSmhvbiBSYW1vcyIsImlhdCI6MTY1NjYwMzc1MX0.J5mzfCQX-M2iNj6gou877-sR7hUtc_d8eZY0JVsM03E'
+                  
+                }})
+         .then(resp => {
+
+            let dataPrizesAr = resp.data
+            sendData = dataPrizesAr
+
+          return res.status(200).json(sendData);
+
+          })
+         .catch(error => error)
+
     let testEntitiesAdded = false;
     //alert('If testing the lat/lon manual input on a mobile device, please turn off your GPS to avoid the real location being detected.');
     const el = document.querySelector("[gps-new-camera]");
