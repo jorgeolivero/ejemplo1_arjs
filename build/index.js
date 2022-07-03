@@ -4,9 +4,10 @@ function randomNumber(min, max) {
 
 window.onload = () => {
 
-    let sendData
+    let properties = []
 
-    axios.get('http://localhost:80/api/gaming/prizes/ar', {
+    axios.get('https://as-siteit-pru.azurewebsites.net/api/gaming/prizes/ar', {
+    //axios.get('http://localhost:80/api/gaming/prizes/ar', {
 
                 headers: {
                   cli: 'Web',
@@ -20,10 +21,10 @@ window.onload = () => {
                 }})
          .then(resp => {
 
-            let dataPrizesAr = resp.data
-            sendData = dataPrizesAr
+            let { data } = resp.data
 
-          return res.status(200).json(sendData);
+            properties = data.list_prizes_ar
+            //console.log(properties)
 
           })
          .catch(error => error)
@@ -37,25 +38,28 @@ window.onload = () => {
             
             // Add four boxes to the north (red), south (yellow), west (blue)
             // and east (red) of the initial GPS position
-            const properties = [{
-                    color: 'red',
-                    latDis: 0.001,
-                    lonDis: 0
-                },{
-                    color: 'yellow',
-                    latDis: -0.001,
-                    lonDis: 0
-                },{
-                    color: 'blue',
-                    latDis: 0,
-                    lonDis: -0.001
-                },{
-                    color: 'green',
-                    latDis: 0,
-                    lonDis: 0.001
-                }
-            ];
+            // const properties = [{
+            //         color: 'red',
+            //         latDis: 0.001,
+            //         lonDis: 0
+            //     },{
+            //         color: 'yellow',
+            //         latDis: -0.001,
+            //         lonDis: 0
+            //     },{
+            //         color: 'blue',
+            //         latDis: 0,
+            //         lonDis: -0.001
+            //     },{
+            //         color: 'green',
+            //         latDis: 0,
+            //         lonDis: 0.001
+            //     }
+            // ];
+
+
             for(const prop of properties) {
+                //console.log('prop -->', prop)
                 // console.log('lat -->',  e.detail.position.latitude + prop.latDis)
                 // console.log('lon -->', e.detail.position.longitude + prop.lonDis)
                 //const entity = document.createElement("a-box");
@@ -73,10 +77,16 @@ window.onload = () => {
                 //entity.setAttribute('material', { color: prop.color } );
                 entity.setAttribute('gltf-model', './models/platoComida.glb');
                 entity.setAttribute('gps-new-entity-place', {
-                    latitude: e.detail.position.latitude + prop.latDis,
-                    longitude: e.detail.position.longitude + prop.lonDis
+                    latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
+                    longitude: e.detail.position.longitude + randomNumber(-0.001, 0.001)
                 });
-                
+
+                console.log('lat -->',  e.detail.position.latitude + randomNumber(-0.001, 0.001))
+                console.log('lon -->', e.detail.position.longitude + randomNumber(-0.001, 0.001))
+
+                // lat --> 51.049
+                // lon --> -0.723
+
                 document.querySelector("a-scene").appendChild(entity);
             }
 
