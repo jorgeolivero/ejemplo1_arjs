@@ -63,31 +63,41 @@ window.onload = () => {
                 // console.log('lat -->',  e.detail.position.latitude + prop.latDis)
                 // console.log('lon -->', e.detail.position.longitude + prop.lonDis)
                 //const entity = document.createElement("a-box");
-                const entity = document.createElement("a-entity");
-                entity.setAttribute("scale", {
-                    x: 20, 
-                    y: 20,
-                    z: 20
-                });
-                entity.setAttribute("rotation", {
-                    x: 0, 
-                    y: 45,
-                    z: 0
-                });
-                //entity.setAttribute('material', { color: prop.color } );
-                entity.setAttribute('gltf-model', './models/platoComida.glb');
-                entity.setAttribute('gps-new-entity-place', {
-                    latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
-                    longitude: e.detail.position.longitude + randomNumber(-0.001, 0.001)
-                });
 
-                console.log('lat -->',  e.detail.position.latitude + randomNumber(-0.001, 0.001))
-                console.log('lon -->', e.detail.position.longitude + randomNumber(-0.001, 0.001))
+                if(prop.active) {
+                
+                    const entity = document.createElement("a-entity");
+                    entity.setAttribute("scale", {
+                        x: 20, 
+                        y: 20,
+                        z: 20
+                    });
+                    entity.setAttribute("rotation", {
+                        x: 0, 
+                        y: 45,
+                        z: 0
+                    });
+                    //entity.setAttribute('material', { color: prop.color } );
+                    entity.setAttribute('gltf-model', './models/platoComida.glb');
+                    entity.setAttribute('gps-new-entity-place', {
+                        latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
+                        longitude: e.detail.position.longitude + randomNumber(-0.001, 0.001)
+                    });
 
-                // lat --> 51.049
-                // lon --> -0.723
+                    console.log('lat -->',  e.detail.position.latitude + randomNumber(-0.001, 0.001))
+                    console.log('lon -->', e.detail.position.longitude + randomNumber(-0.001, 0.001))
 
-                document.querySelector("a-scene").appendChild(entity);
+                    // lat --> 51.049
+                    // lon --> -0.723
+
+                    // lat --> 51.04842219719763
+                    // lon --> -0.7223856819363367
+
+                    document.querySelector("a-scene").appendChild(entity);
+
+                }else{
+                    console.log('prop.active -->', prop.active)
+                }
             }
 
             testEntitiesAdded = true;
