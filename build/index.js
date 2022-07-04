@@ -84,8 +84,8 @@ window.onload = () => {
                         longitude: e.detail.position.longitude + randomNumber(-0.001, 0.001)
                     });
 
-                    console.log('lat -->',  e.detail.position.latitude + randomNumber(-0.001, 0.001))
-                    console.log('lon -->', e.detail.position.longitude + randomNumber(-0.001, 0.001))
+                    // console.log('lat -->',  e.detail.position.latitude + randomNumber(-0.001, 0.001))
+                    // console.log('lon -->', e.detail.position.longitude + randomNumber(-0.001, 0.001))
 
                     // lat --> 51.049
                     // lon --> -0.723
