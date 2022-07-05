@@ -7,6 +7,7 @@
 <script type='text/javascript' src='./build/aframe-ar.js'></script>
 <script type='text/javascript' src='./build/index.js'></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
 <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
@@ -15,6 +16,7 @@
 -->
 
 	<a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
+
 </a-scene>
 <div id='setloc' style='position:absolute; left: 10px; bottom: 2%; z-index:999; background-color: blue; color: white; padding: 10px'>
 <input id="lat" value="51.049" type="hidden" /> 

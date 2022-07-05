@@ -32,6 +32,7 @@ window.onload = () => {
     let testEntitiesAdded = false;
     //alert('If testing the lat/lon manual input on a mobile device, please turn off your GPS to avoid the real location being detected.');
     const el = document.querySelector("[gps-new-camera]");
+
     el.addEventListener("gps-camera-update-position", e => {
         if(!testEntitiesAdded) {
             //alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
@@ -84,6 +85,9 @@ window.onload = () => {
                         longitude: e.detail.position.longitude + randomNumber(-0.001, 0.001)
                     });
 
+                    entity.setAttribute('cursor', 'fuse: true');
+                    entity.setAttribute('capturar', '');
+
                     // console.log('lat -->',  e.detail.position.latitude + randomNumber(-0.001, 0.001))
                     // console.log('lon -->', e.detail.position.longitude + randomNumber(-0.001, 0.001))
 
@@ -95,10 +99,33 @@ window.onload = () => {
 
                     document.querySelector("a-scene").appendChild(entity);
 
+                    // document.querySelector('a-scene').addEventListener('click', function (e) {
+                    //     console.log('This 2D element was clicked!');
+                    // })
+
                 }else{
                     console.log('prop.active -->', prop.active)
                 }
             }
+
+            const modelo3d = document.querySelector("gltf-model");
+
+
+            AFRAME.registerComponent('capturar', {
+                init: function () {
+                // This will be called after the entity has properly attached and loaded.
+                console.log('I am ready!');
+
+                this.el.addEventListener('click',  () => {   
+
+                        console.log('Hi, George')
+
+                    })
+
+                }
+
+
+            })
 
             testEntitiesAdded = true;
 
@@ -149,7 +176,7 @@ window.onload = () => {
         }
     });
 
-    document.getElementById("go").addEventListener("click", e=> {
+    document.getElementById("go").addEventListener("click", e => {
         const lat = document.getElementById('lat').value;
         const lon = document.getElementById('lon').value;
         const minacc = document.getElementById('minacc').value;
