@@ -85,7 +85,7 @@ window.onload = () => {
                         longitude: e.detail.position.longitude + randomNumber(-0.001, 0.001)
                     });
 
-                    entity.setAttribute('cursor', 'fuse: true');
+                    entity.setAttribute('cursor');
                     entity.setAttribute('capturar', '');
 
                     // console.log('lat -->',  e.detail.position.latitude + randomNumber(-0.001, 0.001))
