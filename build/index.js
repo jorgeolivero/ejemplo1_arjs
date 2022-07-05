@@ -7,7 +7,6 @@ window.onload = () => {
     let properties = []
 
     axios.get('https://as-siteit-pru.azurewebsites.net/api/gaming/prizes/ar', {
-    //axios.get('http://localhost:80/api/gaming/prizes/ar', {
 
                 headers: {
                   cli: 'Web',
@@ -34,6 +33,7 @@ window.onload = () => {
     const el = document.querySelector("[gps-new-camera]");
 
     el.addEventListener("gps-camera-update-position", e => {
+
         if(!testEntitiesAdded) {
             //alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
             
@@ -85,8 +85,10 @@ window.onload = () => {
                         longitude: e.detail.position.longitude + randomNumber(-0.001, 0.001)
                     });
 
-                    entity.setAttribute('cursor');
                     entity.setAttribute('capturar', '');
+
+                    let myClass = prop.id
+                    entity.classList.add(myClass)
 
                     // console.log('lat -->',  e.detail.position.latitude + randomNumber(-0.001, 0.001))
                     // console.log('lon -->', e.detail.position.longitude + randomNumber(-0.001, 0.001))
@@ -99,26 +101,51 @@ window.onload = () => {
 
                     document.querySelector("a-scene").appendChild(entity);
 
-                    // document.querySelector('a-scene').addEventListener('click', function (e) {
-                    //     console.log('This 2D element was clicked!');
-                    // })
 
                 }else{
                     console.log('prop.active -->', prop.active)
                 }
             }
 
-            const modelo3d = document.querySelector("gltf-model");
-
-
             AFRAME.registerComponent('capturar', {
                 init: function () {
                 // This will be called after the entity has properly attached and loaded.
                 console.log('I am ready!');
 
-                this.el.addEventListener('click',  () => {   
+                this.el.addEventListener('click',  (e) => {   
 
-                        console.log('Hi, George')
+                        console.log('Hi, George', e.target.className)
+
+                        let dataBody = {
+                    
+                            id: parseInt(e.target.className),
+                            state_id: 1,
+                            date_captured: "1656944674"
+
+                        }
+
+                        axios.patch('https://as-siteit-pru.azurewebsites.net/api/gaming/prizes/ar', dataBody, {
+
+                                    headers: {
+
+                                        cli: 'Web',
+                                        uid: '770',
+                                        companyId: '946',
+                                        dataCapturePrizeArAround: 'true',
+                                        longitude: '0',
+                                        latitude: '0',
+                                        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjc3MCwibmFtZSI6IkFkaWRhcyIsImlhdCI6MTY1Njk2MTc1NH0.M__ntC_cKkDol59JNdLGhHRe-yY588IqK_Nfptaxc0Q'
+                                    
+                                    }
+                                })
+                            .then(resp => {
+
+                                console.log('resp -->', resp.data)
+
+                                alert(resp.data.message)
+
+                            })
+                            .catch(error => error)
 
                     })
 
@@ -129,54 +156,12 @@ window.onload = () => {
 
             testEntitiesAdded = true;
 
-            // if(testEntitiesAdded) {
-
-            //     const entity = document.createElement("a-entity");
-
-            //     entity.setAttribute("scale", {
-            //         x: 20, 
-            //         y: 20,
-            //         z: 20
-            //     });
-            //     entity.setAttribute("rotation", {
-            //         x: 0, 
-            //         y: 0,
-            //         z: 0
-            //     });
-            //     entity.setAttribute('gltf-model', './models/platoComida.glb');
-            //     entity.setAttribute('gps-new-entity-place', {
-            //         latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
-            //         longitude: e.detail.position.longitude - randomNumber(-0.001, 0.001)
-            //     });
-            //     entity.setAttribute('animation-mixer', '');
-            //     document.querySelector("a-scene").appendChild(entity);
-
-            //     const entity2 = document.createElement("a-entity");
-            //     entity2.setAttribute("scale", {
-            //         x: 20, 
-            //         y: 20,
-            //         z: 20
-            //     });
-            //     entity2.setAttribute("rotation", {
-            //         x: 0, 
-            //         y: 180,
-            //         z: 0
-            //     });
-            //     entity2.setAttribute('gltf-model', './models/magnemite.glb');
-            //     entity2.setAttribute('gps-new-entity-place', {
-            //         latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
-            //         longitude: e.detail.position.longitude - randomNumber(-0.001, 0.001)
-            //     });
-            //     entity2.setAttribute('animation-mixer', '');
-
-            //     document.querySelector("a-scene").appendChild(entity2);
-
-            // }
-
         }
+
     });
 
     document.getElementById("go").addEventListener("click", e => {
+
         const lat = document.getElementById('lat').value;
         const lon = document.getElementById('lon').value;
         const minacc = document.getElementById('minacc').value;
