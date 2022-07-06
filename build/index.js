@@ -69,17 +69,18 @@ window.onload = () => {
                 
                     const entity = document.createElement("a-entity");
                     entity.setAttribute("scale", {
-                        x: 20, 
-                        y: 20,
-                        z: 20
+                        x: 70, 
+                        y: 70,
+                        z: 70
                     });
                     entity.setAttribute("rotation", {
                         x: 0, 
-                        y: 45,
+                        y: 0,
                         z: 0
                     });
                     //entity.setAttribute('material', { color: prop.color } );
-                    entity.setAttribute('gltf-model', './models/platoComida.glb');
+                    //entity.setAttribute('gltf-model', './models/platoComida.glb');
+                    entity.setAttribute('gltf-model', prop.url3d);
                     entity.setAttribute('gps-new-entity-place', {
                         latitude: e.detail.position.latitude + randomNumber(-0.001, 0.001),
                         longitude: e.detail.position.longitude + randomNumber(-0.001, 0.001)
