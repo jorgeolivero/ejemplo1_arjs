@@ -75,7 +75,7 @@ window.onload = () => {
                     });
                     entity.setAttribute("rotation", {
                         x: 0, 
-                        y: 0,
+                        y: 45,
                         z: 0
                     });
                     //entity.setAttribute('material', { color: prop.color } );
