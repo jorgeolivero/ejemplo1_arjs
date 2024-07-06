@@ -45,8 +45,12 @@ window.onload = () => {
                     y: 45,
                     z: 0
                 });
+                const modelsGlb = ['ClubColombia', 'magnemite', 'pizza', 'texto', 'texto2', 'platoComida']
+                const randomIndex = Math.floor(Math.random() * (modelsGlb.length - 0)) + 0
+                const randomModel = modelsGlb[randomIndex]
+                console.log(`Modelo aleatorio: ${randomModel}`)
                 //entity.setAttribute('material', { color: prop.color } );
-                entity.setAttribute('gltf-model', './models/platoComida.glb');
+                entity.setAttribute('gltf-model', `./models/${randomModel}.glb`);
                 entity.setAttribute('gps-new-entity-place', {
                     latitude: e.detail.position.latitude + prop.latDis,
                     longitude: e.detail.position.longitude + prop.lonDis
